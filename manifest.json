@@ -1,0 +1,10 @@
+{
+  "name":"CS TAKİP — Offline İş Takip Merkezi",
+  "short_name":"CS TAKİP",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#080e19",
+  "theme_color":"#0b1220",
+  "lang":"tr"
+}
