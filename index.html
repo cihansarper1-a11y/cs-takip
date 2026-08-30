@@ -308,6 +308,34 @@ body::after{width:520px;height:520px;right:-180px;bottom:-220px;background:radia
 }
 </style>
 
+</
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#090f1b">
+<script id="cs-mobile-pwa">
+(function(){
+  function updateOfflineState(){
+    var el=document.getElementById('csOfflinePill');
+    if(!el)return;
+    var online=navigator.onLine;
+    el.textContent=online?'● Çevrimiçi':'● İNTERNETSİZ MOD';
+    el.className=online?'online':'offline';
+    el.title=online?'Bağlantı var. Veriler cihazda tutulur.':'İnternet yok. Yerel veriler kullanılabilir.';
+  }
+  function registerPWA(){
+    if(!('serviceWorker' in navigator)) return;
+    navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(){});
+  }
+  window.addEventListener('online',updateOfflineState);
+  window.addEventListener('offline',updateOfflineState);
+  document.addEventListener('DOMContentLoaded',function(){
+    var el=document.createElement('div');
+    el.id='csOfflinePill';
+    document.body.appendChild(el);
+    updateOfflineState();
+    registerPWA();
+  });
+})();
+</script>
 </head>
 <body>
 <div class="app">
@@ -1592,35 +1620,7 @@ async function previewAuditRecord(kind,id){
 }
 function auditRecordDownloadHtml(kind,x){
  return `<!doctype html><html><head><meta charset="utf-8"><title>Denetim Raporu</title><style>body{background:#eee;margin:0;padding:30px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:9px}</style></head><body>${auditRecordHtml(kind,x)}
-<script id="cs-mobile-pwa">
-(function(){
-  'use strict';
 
-  function updateOfflineState(){
-    var el=document.getElementById('csOfflinePill');
-    if(!el)return;
-    var online=navigator.onLine;
-    el.textContent=online?'● Çevrimiçi':'● İNTERNETSİZ MOD';
-    el.className=online?'online':'offline';
-    el.title=online?'Bağlantı var. Veriler cihazda tutulur.':'İnternet yok. Yerel veriler kullanılabilir.';
-  }
-
-  function registerPWA(){
-    if(!('serviceWorker' in navigator)) return;
-    navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(function(){});
-  }
-
-  window.addEventListener('online',updateOfflineState);
-  window.addEventListener('offline',updateOfflineState);
-  document.addEventListener('DOMContentLoaded',function(){
-    var el=document.createElement('div');
-    el.id='csOfflinePill';
-    document.body.appendChild(el);
-    updateOfflineState();
-    registerPWA();
-  });
-})();
-</script>
 
 </body></html>`;
 }
@@ -2775,7 +2775,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('reportTaskSite')){populateTaskReportSites();generateTaskReport();}});
-</script>
+<\/script>
 <script id="tab-visual-feedback">
 (function(){
   function bindTabFeedback(){
@@ -2794,7 +2794,7 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('re
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindTabFeedback);else bindTabFeedback();
 })();
-</script>
+<\/script>
 
 <script id="chn-professional-upgrade">
 
@@ -2915,7 +2915,7 @@ async function boot(){addStyle();injectTopbar();rememberPage();wrapTaskSave();en
 window.addEventListener('load',()=>{startupRestore().finally(()=>setTimeout(boot,100));});
 })();
 
-</script>
+<\/script>
 </body>
 
 <script>
@@ -3256,7 +3256,7 @@ function init(){injectV2Style();createCorePages();createExtraPages();addSpecialN
 window.openV2Task=openV2Task;window.openContract=openContract;window.openSupplier=openSupplier;window.openInvoice=openInvoice;window.openDecision=openDecision;window.previewDecisionDoc=previewDecisionDoc;window.downloadDecisionDoc=downloadDecisionDoc;window.printDecisionDoc=printDecisionDoc;window.openAssembly=openAssembly;window.deleteV2=deleteV2;window.renderContracts=renderContracts;window.renderSuppliers=renderSuppliers;window.renderInvoices=renderInvoices;window.renderDecisions=renderDecisions;window.renderAssemblies=renderAssemblies;window.clearTrash=clearTrash;window.restoreTrash=restoreTrash;window.renderArchive=renderArchive;window.renderPhotos=renderPhotos;window.openPhotoUpload=openPhotoUpload;window.openAdvance=openAdvance;window.editAdvance=editAdvance;window.deleteAdvance=deleteAdvance;window.downloadAdvanceDoc=downloadAdvanceDoc;window.previewAdvanceDoc=previewAdvanceDoc;window.renderAdvances=renderAdvances;
 window.addEventListener('load',()=>setTimeout(init,300));
 })();
-</script>
+<\/script>
 
 
 <style id="chnProfileStyle">
@@ -3462,7 +3462,7 @@ window.addEventListener('load',()=>setTimeout(init,300));
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
-</script>
+<\/script>
 </html>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
@@ -3522,7 +3522,7 @@ document.addEventListener("DOMContentLoaded",function(){
   });
 })();
 
-</script>
+<\/script>
 
 
 
@@ -3812,4 +3812,4 @@ document.addEventListener("DOMContentLoaded",function(){
     ensureAnnualPeople();renderYearOptions();renderAnnualLeave();
   });
 })();
-</script>
+<\/script>
